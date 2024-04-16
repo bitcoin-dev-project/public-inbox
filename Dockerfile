@@ -1,6 +1,6 @@
 FROM fedora:latest
 
-RUN dnf install perl public-inbox git public-inbox-server -y
+RUN dnf install perl public-inbox git public-inbox-server perl-Plack-Middleware-ReverseProxy -y
 
 WORKDIR /home/app
 
