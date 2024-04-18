@@ -14,6 +14,8 @@ WORKDIR /home/app/bitcoindev
 
 RUN public-inbox-fetch .
 
+WORKDIR /home/app
+
 RUN public-inbox-index /home/app/bitcoindev
 
 COPY . /home/app/bitcoindev/
