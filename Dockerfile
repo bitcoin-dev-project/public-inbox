@@ -10,7 +10,13 @@ RUN public-inbox-init -V1 bitcoindev /home/app/bitcoindev https://gnusha.org/pi/
 
 RUN public-inbox-index /home/app/bitcoindev
 
-COPY ./description /home/app/bitcoindev/
+WORKDIR /home/app/bitcoindev
+
+RUN public-inbox-fetch .
+
+RUN public-inbox-index /home/app/bitcoindev
+
+COPY . /home/app/bitcoindev/
 
 EXPOSE 8080
 
