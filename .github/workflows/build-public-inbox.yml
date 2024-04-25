@@ -28,5 +28,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: cryptochap/public-inbox:latest
+        tags: bitcoindevproject/public-inbox:latest
         no-cache: true
