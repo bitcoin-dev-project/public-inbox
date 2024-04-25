@@ -30,3 +30,21 @@ jobs:
         push: true
         tags: cryptochap/public-inbox:latest
         no-cache: true
+  commit:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create date file
+      run: date > timeupdated.txt
+
+    - name: Commit and push
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'github-actions@github.com'
+        git add date.txt
+        git commit -m "Daily update"
+        git push
