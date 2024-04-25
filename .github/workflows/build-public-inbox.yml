@@ -39,7 +39,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create date file
-      run: date > timeupdated.txt
+      run: date > date.txt
 
     - name: Commit and push
       run: |
