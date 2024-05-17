@@ -29,3 +29,24 @@ jobs:
         push: true
         tags: bitcoindevproject/public-inbox:latest
         no-cache: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node 18
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+
+      - name: Install Railway
+        run: npm i -g @railway/cli
+
+      - name: Deploy
+        run: railway up --service public-inbox
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

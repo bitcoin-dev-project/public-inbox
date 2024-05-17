@@ -1,0 +1,3 @@
+FROM cryptochap/public-inbox:latest
+
+CMD [ "public-inbox-httpd" ]
