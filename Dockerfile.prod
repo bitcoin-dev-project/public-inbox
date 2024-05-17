@@ -1,0 +1,3 @@
+FROM bitcoindevproject/public-inbox:latest
+
+CMD [ "public-inbox-httpd" ]
