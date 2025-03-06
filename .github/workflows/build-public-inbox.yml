@@ -47,6 +47,14 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Deploy
-        run: railway up --service public-inbox
+        run: | # This script retries the deployment 3 times before failing because railway sometimes fails to deploy
+          n=0
+          until [ "$n" -ge 3 ]
+          do
+            railway up --service public-inbox && break
+            n=$((n+1))
+            echo "Retrying deployment... attempt $n"
+            sleep 10
+          done
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
