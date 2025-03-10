@@ -56,5 +56,11 @@ jobs:
             echo "Retrying deployment... attempt $n"
             sleep 10
           done
+          
+          # Check if all retries failed
+          if [ "$n" -eq 3 ]; then
+            echo "All deployment attempts failed"
+            exit 1 
+          fi
         env:
-            RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
